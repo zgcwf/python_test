@@ -421,3 +421,58 @@ stu1.set_grade('英语', 66)
 print(stu1.grades)
 stu1.print_grades()
 
+
+# 类的继承
+# class 子类名(父类名)
+
+# 父类：员工类
+class Employee:
+    def __init__(self, name, id):
+        self.name = name
+        self.id = id
+
+    def print_info(self):
+        print(f"员工姓名：{self.name}，员工工号：{self.id}")
+
+
+#  子类：全职员工
+class FullTimeEmployee(Employee):
+    def __init__(self, name, id, salary):
+        # 子类调用父类构造方法
+        super().__init__(name, id)
+        self.salary = salary
+
+    def calculate_monthly_pay(self):
+        print(self.salary)
+
+
+# 子类： 兼职员工
+class PartTimeEmployee(Employee):
+    def __init__(self, name, id, daily_salary, work_days):
+        super().__init__(name, id)
+        self.daily_salary = daily_salary
+        self.work_days = work_days
+
+    def calculate_monthly_pay(self):
+        result = self.work_days * self.daily_salary
+        print(result)
+
+
+user1 = FullTimeEmployee('张三', '001', 8888)
+user2 = PartTimeEmployee('李四', '002', 200, 15)
+
+user1.print_info()
+user2.print_info()
+
+user1.calculate_monthly_pay()
+user2.calculate_monthly_pay()
+
+# 十七、文件操作
+# 打开文件: open(文件路径, 模式, 编码模式)
+# 使用 open() 方法一定要保证关闭文件对象，即调用 close() 方法
+f = open('./data.txt', 'r', encoding='utf-8')
+content = f.read()
+print(content)
+f.close()
+
+
