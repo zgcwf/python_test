@@ -34,19 +34,18 @@ class MyWindow(QWidget):
 
     def __init__(self):
         super().__init__()
+        self.msg = None
         self.init_ui()
         self.msg_history = list()  # 用来存放消息
 
     def init_ui(self):
-        self.resize(500, 300)
+        self.resize(600, 300)
 
-        # 创建一个整体布局器
+        # 创建一个整体垂直布局器
         container = QVBoxLayout()
 
-        # 用来显示检测到漏洞的信息
+        # 创建一个QLabel用来显示检测到漏洞的信息
         self.msg = QLabel("")
-        self.msg.resize(440, 15)
-        # print(self.msg.frameSize())
         self.msg.setWordWrap(True)  # 自动换行
         self.msg.setAlignment(Qt.AlignTop)  # 靠上
         # self.msg.setStyleSheet("background-color: yellow; color: black;")
@@ -54,13 +53,15 @@ class MyWindow(QWidget):
         # 创建一个滚动对象
         scroll = QScrollArea()
         scroll.setWidget(self.msg)
+        scroll.setWidgetResizable(True)
 
         # 创建垂直布局器，用来添加自动滚动条
         v_layout = QVBoxLayout()
         v_layout.addWidget(scroll)
 
-        # 创建水平布局器
+        # 创建水平布局器: 按钮居中对齐
         h_layout = QHBoxLayout()
+        # 创建一个按钮并指定其父窗口
         btn = QPushButton("开始检测", self)
         # 绑定按钮的点击，点击按钮则开始检测
         btn.clicked.connect(self.check)
@@ -83,7 +84,6 @@ class MyWindow(QWidget):
         print('>>>', msg)
         self.msg_history.append(msg)
         self.msg.setText("<br>".join(self.msg_history))
-        self.msg.resize(440, self.msg.frameSize().height() + 15)
         self.msg.repaint()  # 更新内容，如果不更新可能没有显示新内容
 
     def check(self):
