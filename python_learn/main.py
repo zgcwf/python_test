@@ -470,9 +470,9 @@ user2.calculate_monthly_pay()
 # 十七、文件操作
 # 打开文件: open(文件路径, 模式, 编码模式)
 # 使用 open() 方法一定要保证关闭文件对象，即调用 close() 方法
-f = open('./data.txt', 'r', encoding='utf-8')
+f = open('data.txt', 'r', encoding='utf-8')
 content = f.read()
 print(content)
 f.close()
 
-
+print(["192.168.1.%d" % x for x in range(1, 255)])
