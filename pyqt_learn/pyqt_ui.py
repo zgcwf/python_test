@@ -23,7 +23,7 @@ if __name__ == '__main__':
     # 设置窗口标题
     w.setWindowTitle('Hello World')
     # 设置图标
-    w.setWindowIcon(QIcon('icon..png'))
+    w.setWindowIcon(QIcon('../images/icon.png'))
 
     # 下面创建一个Label（纯文本），在创建的时候指定了父对象
     label = QLabel("账号: ", w)
